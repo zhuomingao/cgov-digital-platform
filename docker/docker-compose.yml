@@ -1,0 +1,58 @@
+# Based on https://github.com/geerlingguy/drupal-vm/blob/master/example.docker-compose.yml
+
+version: "3.7"
+
+services:
+
+  drupal-vm:
+
+    # If using a custom baked image, change the name below to your image's name.
+    #image: geerlingguy/drupal-vm
+    # Comment out 'image' and uncomment the line below if customizing Drupal VM
+    # with a project-specific Dockerfile in the same directory as this file.
+    build:
+      context: front-end
+
+    # Set this to your project's machine name (e.g. example-com)
+    container_name: drupal-web
+
+    ports:
+      - 8080:80
+      - 443:443
+
+    volumes:
+      # Map the overall project into the web directory structure.
+      - ..:/var/www/drupalvm/drupal:rw,delegated
+
+    privileged: true
+    command: /lib/systemd/systemd
+
+    networks:
+      drupalvm:
+
+    depends_on:
+      - db
+
+  db:
+    image: mysql:5.6
+    volumes:
+      - ./sql/data:/var/lib/mysql
+    restart: always
+    ports:
+      - 3306:3306
+
+    environment:
+      MYSQL_DATABASE: drupal
+      MYSQL_ROOT_PASSWORD: drupal
+      MYSQL_USER: drupal
+      MYSQL_PASSWORD: drupal
+
+    networks:
+      drupalvm:
+
+
+networks:
+
+  # This custom network allows Drupal VM to be accessed on an IP address.
+  drupalvm:
+    driver: bridge

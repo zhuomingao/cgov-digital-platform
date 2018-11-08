@@ -8,7 +8,7 @@ This project provides the Cancer.gov Digital Platform. A Drupal based Acquia BLT
 First you need to [install composer](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx).
 
 > Note: The instructions below refer to the [global composer installation](https://getcomposer.org/doc/00-intro.md#globally).
-You might need to replace `composer` with `php composer.phar` (or similar) 
+You might need to replace `composer` with `php composer.phar` (or similar)
 for your setup.
 
 Afterwards in the project directory run:
@@ -33,26 +33,26 @@ When installing the given `composer.json` some tasks are taken care of:
 
 ## Updating Drupal Core
 
-This project will attempt to keep all of your Drupal Core files up-to-date; the 
-project [drupal-composer/drupal-scaffold](https://github.com/drupal-composer/drupal-scaffold) 
-is used to ensure that your scaffold files are updated every time drupal/core is 
-updated. If you customize any of the "scaffolding" files (commonly .htaccess), 
-you may need to merge conflicts if any of your modified files are updated in a 
+This project will attempt to keep all of your Drupal Core files up-to-date; the
+project [drupal-composer/drupal-scaffold](https://github.com/drupal-composer/drupal-scaffold)
+is used to ensure that your scaffold files are updated every time drupal/core is
+updated. If you customize any of the "scaffolding" files (commonly .htaccess),
+you may need to merge conflicts if any of your modified files are updated in a
 new release of Drupal core.
 
 Follow the steps below to update your core files.
 
 1. Run `composer update drupal/core webflo/drupal-core-require-dev symfony/* --with-dependencies` to update Drupal Core and its dependencies.
-1. Run `git diff` to determine if any of the scaffolding files have changed. 
-   Review the files for any changes and restore any customizations to 
+1. Run `git diff` to determine if any of the scaffolding files have changed.
+   Review the files for any changes and restore any customizations to
   `.htaccess` or `robots.txt`.
 1. Commit everything all together in a single commit, so `docroot` will remain in
    sync with the `core` when checking out branches or running `git bisect`.
-1. In the event that there are non-trivial conflicts in step 2, you may wish 
-   to perform these steps on a branch, and use `git merge` to combine the 
-   updated core files with your customized files. This facilitates the use 
-   of a [three-way merge tool such as kdiff3](http://www.gitshah.com/2010/12/how-to-setup-kdiff-as-diff-tool-for-git.html). This setup is not necessary if your changes are simple; 
-   keeping all of your modifications at the beginning or end of the file is a 
+1. In the event that there are non-trivial conflicts in step 2, you may wish
+   to perform these steps on a branch, and use `git merge` to combine the
+   updated core files with your customized files. This facilitates the use
+   of a [three-way merge tool such as kdiff3](http://www.gitshah.com/2010/12/how-to-setup-kdiff-as-diff-tool-for-git.html). This setup is not necessary if your changes are simple;
+   keeping all of your modifications at the beginning or end of the file is a
    good strategy to keep merges easy.
 
 
@@ -60,7 +60,7 @@ Follow the steps below to update your core files.
 
 ### Should I commit the contrib modules I download?
 
-Composer recommends **no**. They provide [argumentation against but also 
+Composer recommends **no**. They provide [argumentation against but also
 workrounds if a project decides to do it anyway](https://getcomposer.org/doc/faqs/should-i-commit-the-dependencies-in-my-vendor-directory.md).
 
 ### Should I commit the scaffolding files?
@@ -85,11 +85,11 @@ achieve that by registering `@composer drupal:scaffold` as post-install and post
 ```
 ### How can I apply patches to downloaded modules?
 
-If you need to apply patches (depending on the project being modified, a pull 
-request is often a better solution), you can do so with the 
+If you need to apply patches (depending on the project being modified, a pull
+request is often a better solution), you can do so with the
 [composer-patches](https://github.com/cweagans/composer-patches) plugin.
 
-To add a patch to drupal module foobar insert the patches section in the extra 
+To add a patch to drupal module foobar insert the patches section in the extra
 section of composer.json:
 ```json
 "extra": {
@@ -100,3 +100,25 @@ section of composer.json:
     }
 }
 ```
+
+## Docker
+
+This project includes a Docker-based alternative to local installations of PHP, Composer, etc.
+To use it, you will, of course, first need to [install Docker](https://www.docker.com/products/docker-desktop).
+
+To launch the Docker solution:
+
+1. Open a command prompt
+2. Change to the project's `docker` directory.
+3. Run the command `docker-compose up --detach`
+
+The web site may be accessed via [http://localhost:8080](http://localhost:8080).
+
+To execute `composer`, `blt`, etc, execute the command `docker exec -it drupal-web /bin/bash`.
+(A later update will provide scripts to execute these commands without the need to invoke
+docker manually.)
+
+### Known Issues
+
+* The Docker image uses Ubuntu 18.04 instead of 16.04
+* The initial installation must be done `composer install` in order to install `blt`.
