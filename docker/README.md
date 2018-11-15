@@ -10,7 +10,7 @@ The configuration needed for running the CGov Digital Platform in a docker compo
 ### Quick Reference
 **Make sure your machine and project have been setup before starting**
 * **STARTING:** Run `docker-compose up -d` within this directory (`docker`) to start up the stack.
-* **STOPING:** `docker-compose down` within this directory (`docker`) to start up the stack.
+* **STOPPING:** `docker-compose down` within this directory (`docker`) to shut down the stack.
 
 **NOTE:** Currently a `docker-compose down` blows away the database. This means every restart requires an [Initial Setup of Site](#Initial-Setup-of-Site).
 
@@ -36,7 +36,7 @@ The configuration needed for running the CGov Digital Platform in a docker compo
 This is how you can install a site. NOTE: at some point we will have a real site, so
 1. Start the stack
    * Run `docker-compose up -d` within this directory (`docker`) to start up the stack.
-1. Run `docker exec -it docker_web_1 /bin/bash` to login to the web container
+1. Run `docker-compose exec web /bin/bash` to login to the web container
 1. `cd /var/www`
 1. `composer install` -- Install all vendor files
 1. `blt setup` -- Perform the initial site install.
@@ -101,10 +101,14 @@ XDebug is the PHP runtime debugger. While it helpful in stepping through code, i
 
 *This is still being worked on*
 TODO:
-1. Setup the xdebug.ini overrides (VSCode & PHPStorm)
+1. Setup the xdebug.ini override by using the appropriate configuration override (VSCode or PHPStorm)
+    from the [docker-compose-override.yml.sample](docker-compose-override.yml.sample)
 1. Edit docker.env and set `XDEBUG_SAPI` to `apache2` in order to enable the XDEBUG module for apache. (If you *really* need to debug
   command line, then set it to `cli`.)
     1. Check /etc/php/7.2/apache2/conf.d/xdebug.ini
+
+
+
 2. Setup the docker-compose.override.yml.sample
 3. Test & document
 
