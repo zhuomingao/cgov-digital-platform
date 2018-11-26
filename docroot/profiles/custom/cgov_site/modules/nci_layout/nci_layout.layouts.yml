@@ -1,0 +1,46 @@
+layout_landing:
+  label: 'Landing Page'
+  path: layouts/landing
+  template: layout--nci-landing
+  library: nci_layout/onecol
+  category: 'Columns: 1'
+  default_region: featuredContent
+  icon_map:
+    - [topleft, topmiddle, topright]
+    - [mifleft, middle, midright]
+    - [middle, middle, middle]
+    - [middle, second_below, second_below]
+    - [bottom]
+  regions:
+    featuredContent:
+      label: Featured Content
+    secondaryContent:
+      label: Secondary Content
+    mediaRow:
+      label: Media Item Row
+    guideCard:
+      label: Guide Card Row
+    bottom:
+      label: Bottom
+layout_ncithree:
+  label: 'NCI 3 Col'
+  path: layouts/nci-three-col
+  template: layout--nci-three-col
+  library: nci_layout/nci-three-col
+  category: 'Columns: 3'
+  default_region: first
+  icon_map:
+    - [top]
+    - [first, second, third]
+    - [bottom]
+  regions:
+    top:
+      label: Top
+    first:
+      label: First
+    second:
+      label: Second
+    third:
+      label: Third
+    bottom:
+      label: Bottom

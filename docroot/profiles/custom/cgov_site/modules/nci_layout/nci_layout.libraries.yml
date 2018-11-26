@@ -1,0 +1,10 @@
+nci-one-col:
+  version: VERSION
+  css:
+    theme:
+      layouts/landing/one-col.css: {}
+nci-three-col:
+  version: VERSION
+  css:
+    theme:
+      layouts/nci-three-col/nci-three-col.css: {}
