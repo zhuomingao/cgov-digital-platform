@@ -2,6 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.list_item_title_date_desc
     - field.field.node.cgov_press_release.body
     - field.field.node.cgov_press_release.field_browser_title
     - field.field.node.cgov_press_release.field_card_title
@@ -25,10 +26,10 @@ dependencies:
     - options
     - text
     - user
-id: node.cgov_press_release.default
+id: node.cgov_press_release.list_item_title_date_desc
 targetEntityType: node
 bundle: cgov_press_release
-mode: default
+mode: list_item_title_date_desc
 content:
   body:
     label: hidden
@@ -69,8 +70,8 @@ content:
     weight: 104
     label: hidden
     settings:
-      format_type: medium
       timezone_override: ''
+      format_type: cgov_display_date
     third_party_settings: {  }
     type: datetime_default
     region: content
@@ -78,8 +79,8 @@ content:
     weight: 105
     label: hidden
     settings:
-      format_type: medium
       timezone_override: ''
+      format_type: cgov_display_date
     third_party_settings: {  }
     type: datetime_default
     region: content
@@ -87,8 +88,8 @@ content:
     weight: 106
     label: hidden
     settings:
-      format_type: medium
       timezone_override: ''
+      format_type: cgov_display_date
     third_party_settings: {  }
     type: datetime_default
     region: content
@@ -105,16 +106,18 @@ content:
     label: hidden
     settings:
       link: true
+      view_mode: default
     third_party_settings: {  }
-    type: entity_reference_label
+    type: entity_reference_entity_view
     region: content
   field_image_promotional:
     weight: 120
     label: hidden
     settings:
       link: true
+      view_mode: default
     third_party_settings: {  }
-    type: entity_reference_label
+    type: entity_reference_entity_view
     region: content
   field_list_description:
     weight: 111
