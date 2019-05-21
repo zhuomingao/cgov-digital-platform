@@ -8,7 +8,7 @@ set -ev
 case $MIGRATION in
 CGOV)
     drush mim summary_migration && drush mim summaryes_migration && drush mim dis_migration
-    drush mim externallinksql_migration; drush mim internallinksql_migration; drush mim citation_migration
+    drush mim externallinksql_migration; drush mim internallinksql_migration; drush mim citation_migration; drush mim medialink_migration
     drush mim paragraph_en_migration; drush mim paragraph_es_migration
     drush mim cgovimage_migration && drush mim cgovimage_es_migration
     drush mim pressrelease_en_migration && drush mim pressrelease_es_migration
@@ -26,6 +26,8 @@ CGOV)
     drush mim twocolumnrow_migration && drush mim guidecardrow_migration
 
     drush mim twoitemfeaturecardrow_migration
+
+    drush mim dynamiclist_migration
 
 
     drush mim blogseries_en_migration && drush mim blogseries_es_migration && drush mim blogtopics_migration && drush mim blogtopics_es_migration
